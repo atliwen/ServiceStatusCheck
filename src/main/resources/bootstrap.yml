@@ -1,0 +1,65 @@
+#################################这个区间除appname不要改################
+spring:
+  application:
+    #应用名称必须配置
+    name: demonstration
+#  cloud:
+#    config:
+#      enabled: true
+#      discovery:
+#        #开启配置中心
+#        enabled: true
+#        #配置中心应用名称
+#        service-id: SPRING-CLOUD-CONFIG
+#        #快速失败，就是如果找不到配置中心服务本服务不启动
+#      fail-fast: true
+#      #svn或git主分支目录
+#      label: master
+#  jpa:
+#    show-sql: true
+encrypt:
+  failOnError: false
+#注册中心信息
+eureka:
+  instance:
+    #显示IP
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      #注册中心默认地址，默认就使用第一个如果有多个
+      #第一个不通或加载第二个，如果有区域配置可以就近原则配置
+      defaultZone: http://175.24.41.27:8761/eureka/
+    eureka-server-total-connections-per-host: 500
+
+
+#一下信息都是springboot暴露rest接口是否免权限，设置为false为免权限，否则需要认证
+endpoints:
+  refresh:
+    sensitive: false
+  metrics:
+    sensitive: false
+  dump:
+    sensitive: false
+  auditevents:
+    sensitive: false
+  features:
+    sensitive: false
+  mappings:
+    sensitive: false
+  trace:
+    sensitive: false
+  autoconfig:
+    sensitive: false
+  loggers:
+    sensitive: false
+  jolokia:
+    enabled: true
+    sensitive: false
+  beans:
+    sensitive: false
+security:
+  basic:
+    enabled: false
+  user:
+    name: test
+    password: test
