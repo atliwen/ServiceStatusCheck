@@ -1,7 +1,7 @@
-
-FROM openjdk:8-jdk-alpine3.9
+FROM maven:3.6.3-ibmjava-8-alpine
 MAINTAINER 李文 - ServiceStatusCheck
-RUN mvn package
-ADD /servicestatuscheck-0.0.7.jar //
-RUN echo "Asia/Shanghai" > /etc/timezone
-ENTRYPOINT ["java", "-jar", "/servicestatuscheck-0.0.7.jar"]
+WORKDIR /app
+ # 拷贝 当前目录下所有文件到 容器 /app目录下
+ COPY . .
+ # 运行的构建命令
+ RUN mvn package
