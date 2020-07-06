@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.atliwen</groupId>
     <artifactId>servicestatuscheck</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.1</version>
     <name>ServiceStatusCheck</name>
     <description>ServiceStatusCheck</description>
 
@@ -95,43 +95,6 @@
                 <!-- 这里是打包成jar插件 -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <!--至少要使用1.0以后的版本 建议很实用最新的1.2.0-->
-                <version>1.2.2</version>
-                <configuration>
-                    <!--用户ID-->
-                    <serverId>docker</serverId>
-                    <!--镜像项目目录-->
-                    <registryUrl>https://registry.cn-hangzhou.aliyuncs.com</registryUrl>
-                    <!--公开的安装有docker的服务器，2375 端口权限开放后可以进行远程超做，用于上传jar包和Dockerfile文件-->
-                    <dockerHost>http://39.101.204.94:2375</dockerHost>
-                    <!--镜像名称  注意 /edi/  这个路径是 镜像目录  请设置对应的镜像目录-->
-                    <imageName>registry.cn-hangzhou.aliyuncs.com/atliwen/${project.artifactId}:${project.version}
-                    </imageName>
-
-<!--                    echo-->
-                    <runs>
-                        <run> echo "Asia/Shanghai" > /etc/timezone</run>
-                    </runs>
-
-                    <!--修改过时间轴为上海区域的java 基础镜像-->
-                    <baseImage>openjdk:8-jdk-alpine3.9</baseImage>
-                    <!--当前镜像版本的描述-->
-                    <maintainer>李文 - ${project.description}</maintainer>
-                    <!--<volumes>/tmp</volumes>-->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-                    <!--                    <entryPoint>["java","-Xmx1024m","-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
             </plugin>
         </plugins>
     </build>
