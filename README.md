@@ -44,6 +44,8 @@
 
 ### 体验地址 
 	1. http://39.101.204.94:11201
+### docker镜像 
+	1. registry.cn-hangzhou.aliyuncs.com/atliwen/servicestatuscheck:0.0.1
 
 ### 为什么需要手动配置？
 1. 兼容非Spring boot 项目
