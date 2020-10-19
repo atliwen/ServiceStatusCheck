@@ -37,11 +37,14 @@ public class ScheduledTasks
                 log.error(" 执行 {} 服务检查失败 ", s.getService(), e);
             }
         }
-        boolean tr = true;
-        while (tr) {
+        if (futureResult.size() == 0) {
+            return;
+        }
+        boolean tr = false;
+        do {
             for (Future<String> s : futureResult) {
                 if (!s.isDone()) {
-                    tr = false;
+                    tr=true;
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -49,7 +52,7 @@ public class ScheduledTasks
                     }
                 }
             }
-        }
+        } while (tr);
         log.info("完成执行服务检查");
     }
 
