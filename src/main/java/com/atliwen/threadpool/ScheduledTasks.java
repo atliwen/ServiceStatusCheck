@@ -40,11 +40,12 @@ public class ScheduledTasks
         if (futureResult.size() == 0) {
             return;
         }
-        boolean tr = false;
+        boolean tr;
         do {
+            boolean d = false;
             for (Future<String> s : futureResult) {
                 if (!s.isDone()) {
-                    tr=true;
+                    d = true;
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -52,6 +53,7 @@ public class ScheduledTasks
                     }
                 }
             }
+            tr = d;
         } while (tr);
         log.info("完成执行服务检查");
     }
