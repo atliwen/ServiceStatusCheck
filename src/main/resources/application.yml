@@ -51,7 +51,8 @@ ribbon.ConnectTimeout: 30000
 #服务端口
 server:
   port: 11201
-
+  compression:
+    enabled: true
 info:
   contact:
     appName: demonstration
@@ -69,3 +70,4 @@ info:
 
 
 #    NFLoadBalancerPingInterval
+
