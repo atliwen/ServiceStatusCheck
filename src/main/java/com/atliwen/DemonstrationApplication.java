@@ -35,7 +35,6 @@ public class DemonstrationApplication
         return new PaginationInterceptor();
     }
 
-
     @EnableAsync
     @Configuration
     class TaskPoolConfig {
